@@ -16,7 +16,7 @@ class CreateManagerDetailsTable extends Migration
         Schema::create('manager_details', static function (Blueprint $table) {
             $table->increments('id');
             $table->integer('manager_id');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('last_name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();

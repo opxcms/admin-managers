@@ -35,7 +35,7 @@ return [
         Template::checkbox('admin_managers::blocked', 'general/common', false, 'admin_managers::template.info_blocked'),
         // details
         Template::phone('admin_managers::details.phone', 'general/details', '', '', '\+\7 (111) 111-11-11'),
-        Template::string('admin_managers::details.nickname', 'general/details'),
+        Template::string('admin_managers::details.nickname', 'general/details', '', [], '', 'required'),
         Template::string('admin_managers::details.last_name', 'general/details'),
         Template::string('admin_managers::details.first_name', 'general/details'),
         Template::string('admin_managers::details.middle_name', 'general/details'),

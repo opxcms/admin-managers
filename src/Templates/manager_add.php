@@ -34,11 +34,11 @@ return [
         Template::string('admin_managers::password', 'general/common', '', [], 'admin_managers::template.info_password', 'nullable|min:6'),
         Template::checkbox('admin_managers::blocked', 'general/common', false, 'admin_managers::template.info_blocked'),
         // details
-        Template::phone('admin_managers::details.phone', 'general/details', '', '', '\+\7 (111) 111-11-11'),
-        Template::string('admin_managers::details.nickname', 'general/details', '', [], '', 'required'),
-        Template::string('admin_managers::details.last_name', 'general/details'),
-        Template::string('admin_managers::details.first_name', 'general/details'),
-        Template::string('admin_managers::details.middle_name', 'general/details'),
+        Template::phone('admin_managers::details_phone', 'general/details', '', '', '\+\7 (111) 111-11-11'),
+        Template::string('admin_managers::details_nickname', 'general/details', '', [], '', 'required'),
+        Template::string('admin_managers::details_last_name', 'general/details'),
+        Template::string('admin_managers::details_first_name', 'general/details'),
+        Template::string('admin_managers::details_middle_name', 'general/details'),
         // policies
         Template::checkboxList('admin_managers::policies', 'policies/', [], Template::makeCheckList(PermissionGroup::class), '', '', 'admin_permission_groups::edit|admin_permission_groups::edit'),
     ],

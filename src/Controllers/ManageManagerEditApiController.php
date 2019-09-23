@@ -152,11 +152,11 @@ class ManageManagerEditApiController extends APIFormController
         $manager->load('details');
 
         $details = $this->getAttributes($manager->getRelation('details'), [
-            'last_name' => 'details.last_name',
-            'first_name' => 'details.first_name',
-            'middle_name' => 'details.middle_name',
-            'phone' => 'details.phone',
-            'nickname' => 'details.nickname',
+            'last_name' => 'details_last_name',
+            'first_name' => 'details_first_name',
+            'middle_name' => 'details_middle_name',
+            'phone' => 'details_phone',
+            'nickname' => 'details_nickname',
         ]);
 
         $template->fillValuesFromObject($manager);
@@ -203,11 +203,11 @@ class ManageManagerEditApiController extends APIFormController
 
         $details = $this->setAttributes($details ?? new ManagerDetails(['manager_id' => $manager->getAttribute('id')]),
             $data, [
-                'details.last_name' => 'last_name',
-                'details.first_name' => 'first_name',
-                'details.middle_name' => 'middle_name',
-                'details.phone' => 'phone',
-                'details.nickname' => 'nickname',
+                'details_last_name' => 'last_name',
+                'details_first_name' => 'first_name',
+                'details_middle_name' => 'middle_name',
+                'details_phone' => 'phone',
+                'details_nickname' => 'nickname',
             ]);
 
         $details->save();

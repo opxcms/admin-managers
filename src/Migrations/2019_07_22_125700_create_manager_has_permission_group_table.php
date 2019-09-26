@@ -1,10 +1,10 @@
 <?php
 
+use Core\Foundation\Database\OpxBlueprint;
+use Core\Foundation\Database\OpxMigration;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 
-class CreateManagerHasPermissionGroupTable extends Migration
+class CreateManagerHasPermissionGroupTable extends OpxMigration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateManagerHasPermissionGroupTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('manager_has_permission_group', static function (Blueprint $table) {
+        $this->schema->create('manager_has_permission_group', static function (OpxBlueprint $table) {
             $table->integer('manager_id');
             $table->integer('group_id');
 

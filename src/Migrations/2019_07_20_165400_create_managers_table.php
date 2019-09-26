@@ -1,10 +1,10 @@
 <?php
 
+use Core\Foundation\Database\OpxBlueprint;
+use Core\Foundation\Database\OpxMigration;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 
-class CreateManagersTable extends Migration
+class CreateManagersTable extends OpxMigration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateManagersTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('managers', static function (Blueprint $table) {
+        $this->schema->create('managers', static function (OpxBlueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');

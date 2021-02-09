@@ -8,6 +8,7 @@ use Core\Http\Controllers\APIFormController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Modules\Admin\Authorization\AdminAuthorization;
 use Modules\Admin\Managers\AdminManagers;
 use Modules\Admin\Managers\Models\Manager;
@@ -16,11 +17,11 @@ use Modules\Admin\PermissionGroups\Models\PermissionGroup;
 
 class ManageManagerEditApiController extends APIFormController
 {
-    public $addCaption = 'admin_managers::manage.add_manager';
-    public $editCaption = 'admin_managers::manage.edit_manager';
-    public $create = 'manage/api/module/admin_managers/manager_edit/create';
-    public $save = 'manage/api/module/admin_managers/manager_edit/save';
-    public $redirect = '/managers/edit/';
+    public string $addCaption = 'admin_managers::manage.add_manager';
+    public string $editCaption = 'admin_managers::manage.edit_manager';
+    public string $create = 'manage/api/module/admin_managers/manager_edit/create';
+    public string $save = 'manage/api/module/admin_managers/manager_edit/save';
+    public string $redirect = '/managers/edit/';
 
     /**
      * Make manager add form.
@@ -152,11 +153,11 @@ class ManageManagerEditApiController extends APIFormController
         $manager->load('details');
 
         $details = $this->getAttributes($manager->getRelation('details'), [
+            'display_name' => 'details_display_name',
+            'phone' => 'details_phone',
             'last_name' => 'details_last_name',
             'first_name' => 'details_first_name',
             'middle_name' => 'details_middle_name',
-            'phone' => 'details_phone',
-            'nickname' => 'details_nickname',
         ]);
 
         $template->fillValuesFromObject($manager);
@@ -188,7 +189,7 @@ class ManageManagerEditApiController extends APIFormController
             $data['password'] = bcrypt($data['password']);
             $data['last_password_change'] = Carbon::now();
         } else if (!$manager->exists) {
-            $data['password'] = bcrypt(str_random(8));
+            $data['password'] = bcrypt(Str::random(8));
         } else {
             unset($data['password']);
         }
@@ -207,7 +208,7 @@ class ManageManagerEditApiController extends APIFormController
                 'details_first_name' => 'first_name',
                 'details_middle_name' => 'middle_name',
                 'details_phone' => 'phone',
-                'details_nickname' => 'nickname',
+                'details_display_name' => 'display_name',
             ]);
 
         $details->save();
@@ -228,7 +229,7 @@ class ManageManagerEditApiController extends APIFormController
      */
     protected function markDefaultPolicies(Templater $template): Templater
     {
-        $default = PermissionGroup::where('default', 1)->pluck('id')->toArray();
+        $default = PermissionGroup::query()->where('default', 1)->pluck('id')->toArray();
 
         $policiesField = $template->getField('policies');
         $policiesField['disabled'] = $default;

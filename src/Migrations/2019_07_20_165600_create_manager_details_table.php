@@ -16,11 +16,11 @@ class CreateManagerDetailsTable extends OpxMigration
         $this->schema->create('manager_details', static function (OpxBlueprint $table) {
             $table->increments('id');
             $table->integer('manager_id');
+            $table->string('display_name')->nullable();
             $table->string('phone')->nullable();
             $table->string('last_name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
-            $table->string('nickname')->nullable();
             $table->softDeletes();
 
             $table->index(['id', 'manager_id']);

@@ -12,7 +12,7 @@ class ManagerDetails extends Model
 
     protected $table = 'manager_details';
 
-    protected $fillable = ['manager_id', 'phone', 'last_name', 'first_name', 'middle_name'];
+    protected $fillable = ['manager_id', 'phone', 'display_name', 'last_name', 'first_name', 'middle_name'];
 
     public $timestamps = false;
 
@@ -44,8 +44,8 @@ class ManagerDetails extends Model
      *
      * @return  string|null
      */
-    public function nickname(): ?string
+    public function displayName(): ?string
     {
-        return $this->getAttribute('nickname');
+        return $this->getAttribute('display_name');
     }
 }

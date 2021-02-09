@@ -36,8 +36,8 @@ return [
         Template::string('admin_managers::password', 'general/common', '', [], 'admin_managers::template.info_password', 'nullable|min:6', 'admin_managers::view|admin_managers::edit_login'),
         Template::checkbox('admin_managers::blocked', 'general/common', false, 'admin_managers::template.info_blocked', '', 'admin_managers::view|admin_managers::disable'),
         // details
+        Template::string('admin_managers::details_display_name', 'general/details', '', [], '', 'required', 'admin_managers::view|admin_managers::edit'),
         Template::phone('admin_managers::details_phone', 'general/details', '', '', '\+\7 (111) 111-11-11', '', 'admin_managers::view|admin_managers::edit'),
-        Template::string('admin_managers::details_nickname', 'general/details', '', [], '', 'required', 'admin_managers::view|admin_managers::edit'),
         Template::string('admin_managers::details_last_name', 'general/details', '', [], '', '', 'admin_managers::view|admin_managers::edit'),
         Template::string('admin_managers::details_first_name', 'general/details', '', [], '', '', 'admin_managers::view|admin_managers::edit'),
         Template::string('admin_managers::details_middle_name', 'general/details', '', [], '', '', 'admin_managers::view|admin_managers::edit'),

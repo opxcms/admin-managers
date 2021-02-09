@@ -30,11 +30,11 @@ class Managers extends BaseModule
             /** @var ManagerDetails $details */
             $details = $manager->details;
             $name = $details ? $details->fullName() : $manager->getAttribute('email');
-            $nickname = $details ? $details->nickname() : '';
+            $displayName = $details ? $details->displayName() : '';
 
             $all[] = [
                 'id' => $manager->getAttribute('id'),
-                'caption' => $name . ($nickname ? ' "' . $nickname . '"' : ''),
+                'caption' => $name . ($displayName ? ' "' . $displayName . '"' : ''),
             ];
         }
 
@@ -50,7 +50,7 @@ class Managers extends BaseModule
      */
     public function getActiveManagersEmails(?array $except = null): array
     {
-        $emails = Manager::where('blocked', false)->pluck('email')->toArray();
+        $emails = Manager::query()->where('blocked', false)->pluck('email')->toArray();
 
         if($except !== null) {
             $emails = array_diff($emails, $except);

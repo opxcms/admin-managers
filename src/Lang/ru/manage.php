@@ -14,7 +14,7 @@ return [
     'sort_by_first_name' => 'Имя',
     'sort_by_middle_name' => 'Отчество',
     'sort_by_email' => 'Email',
-    'sort_by_nickname' => 'Никнэйм',
+    'sort_by_display_name' => 'Отображаемое имя',
 
     // search captions
     'search_by_email' => 'Email',
@@ -22,7 +22,7 @@ return [
     'search_by_last_name' => 'Фамилия',
     'search_by_first_name' => 'Имя',
     'search_by_middle_name' => 'Отчество',
-    'search_by_nickname' => 'Никнэйм',
+    'search_by_display_name' => 'Отображаемое имя',
 
     // list captions
 //    'list_orders_count' => 'заказов: :count',

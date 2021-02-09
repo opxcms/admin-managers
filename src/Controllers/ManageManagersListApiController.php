@@ -47,13 +47,13 @@ class ManageManagersListApiController extends APIListController
             'last_name' => 'admin_managers::manage.sort_by_last_name',
             'first_name' => 'admin_managers::manage.sort_by_first_name',
             'middle_name' => 'admin_managers::manage.sort_by_middle_name',
-            'nickname' => 'admin_managers::manage.sort_by_nickname',
+            'display_name' => 'admin_managers::manage.sort_by_display_name',
         ],
     ];
 
     protected $search = [
-        'nickname' => [
-            'caption' => 'admin_managers::manage.search_by_nickname',
+        'display_name' => [
+            'caption' => 'admin_managers::manage.search_by_display_name',
             'default' => true,
         ],
         'email' => [
@@ -143,7 +143,7 @@ class ManageManagersListApiController extends APIListController
                 'manager_details.middle_name as details_middle_name',
                 'manager_details.last_name as details_last_name',
                 'manager_details.phone as details_phone',
-                'manager_details.nickname as details_nickname',
+                'manager_details.display_name as details_display_name',
             ])
             ->groupBy([
                 'managers.id',
@@ -151,7 +151,7 @@ class ManageManagersListApiController extends APIListController
                 'manager_details.middle_name',
                 'manager_details.last_name',
                 'manager_details.phone',
-                'manager_details.nickname',
+                'manager_details.display_name',
             ]);
 
         return $query;
@@ -172,7 +172,7 @@ class ManageManagersListApiController extends APIListController
             $manager->getAttribute('details_first_name') . ' ' .
             $manager->getAttribute('details_middle_name')
         );
-        $nickname = $manager->getAttribute('details_nickname');
+        $displayName = $manager->getAttribute('details_display_name');
         $email = $manager->getAttribute('email');
         $blocked = $manager->getAttribute('blocked');
         $phone = $manager->getAttribute('details_phone');
@@ -181,7 +181,7 @@ class ManageManagersListApiController extends APIListController
         return $this->makeListRecord(
             $id,
             $name,
-            $nickname,
+            $displayName,
             null,
             [$email, $phone],
             !$blocked,
@@ -220,8 +220,8 @@ class ManageManagersListApiController extends APIListController
             case 'middle_name':
                 $query->orderByRaw('ISNULL(details_middle_name) asc')->orderBy('details_middle_name', $direction);
                 break;
-            case 'nickname':
-                $query->orderByRaw('ISNULL(details_middle_name) asc')->orderBy('details_nickname', $direction);
+            case 'display_name':
+                $query->orderByRaw('ISNULL(details_middle_name) asc')->orderBy('details_display_name', $direction);
                 break;
             default:
                 $query->orderBy('id', $direction);
@@ -288,8 +288,8 @@ class ManageManagersListApiController extends APIListController
                 if (in_array('middle_name', $fields, true)) {
                     $q->orWhere('manager_details.middle_name', 'LIKE', $subject);
                 }
-                if (in_array('nickname', $fields, true)) {
-                    $q->orWhere('manager_details.nickname', 'LIKE', $subject);
+                if (in_array('display_name', $fields, true)) {
+                    $q->orWhere('manager_details.display_name', 'LIKE', $subject);
                 }
             });
         }

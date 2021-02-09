@@ -19,7 +19,7 @@ return [
     'field_details_last_name' => 'Фамилия',
     'field_details_first_name' => 'Имя',
     'field_details_middle_name' => 'Отчество',
-    'field_details_nickname' => 'Никнэйм',
+    'field_details_display_name' => 'Отображаемое имя',
     'field_policies' => 'Политики',
 
     'field_last_password_change' => 'Последняя смена пароля',
